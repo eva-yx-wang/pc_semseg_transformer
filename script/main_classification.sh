@@ -10,7 +10,7 @@
 #SBATCH --cpus-per-gpu=6
 #SBATCH --mem=30G
 ##SBATCH --mail-type=FAIL,TIME_LIMIT,TIME_LIMIT_90
-
+CUDA_VISIBLE_DEVICES=1
 module load cuda/11.1.1
 module load gcc
 echo "===> Anaconda env loaded"
