@@ -1,0 +1,9 @@
+/home/wyx/pretrained
+└── s3dis
+    └── pointnext-xl
+        └── pointnext-xl-area5
+            ├── cfg.yaml
+            ├── pointnext-xl-area520220625-175126-MverfkKFAYB9cYyYMXL3HA.log
+            └── pointnext-xl.yaml
+
+3 directories, 3 files

@@ -10,11 +10,12 @@
 #SBATCH --cpus-per-gpu=6
 #SBATCH --mem=30G
 ##SBATCH --mail-type=FAIL,TIME_LIMIT,TIME_LIMIT_90
-CUDA_VISIBLE_DEVICES=1
-module load cuda/11.1.1
-module load gcc
-echo "===> Anaconda env loaded"
-source activate openpoints
+# CUDA_VISIBLE_DEVICES=1
+# module load cuda/11.1.1
+# module load gcc
+# echo "===> Anaconda env loaded"
+conda deactivate
+conda activate openpoints
 
 while true
 do
@@ -24,19 +25,18 @@ do
         break;
     fi
 done
-echo $PORT
+echo $PORT  # 40835
 
 nvidia-smi
-nvcc --version
-
-hostname
+nvcc --version  # 11.1
+hostname  # omnisky
 NUM_GPU_AVAILABLE=`nvidia-smi --query-gpu=name --format=csv,noheader | wc -l`
-echo $NUM_GPU_AVAILABLE
+echo $NUM_GPU_AVAILABLE  # 22
 
 
-cfg=$1
-PY_ARGS=${@:2}
-python examples/classification/main.py --cfg $cfg  wandb.use_wandb=True ${PY_ARGS}
+# cfg=$1
+# PY_ARGS=${@:2}
+# python examples/classification/main.py --cfg $cfg wandb.use_wandb=True ${PY_ARGS}
 
 # how to run
 # this script supports training using 1 GPU or multi-gpu,

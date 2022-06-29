@@ -11,14 +11,15 @@
 #SBATCH --mem=30G
 ##SBATCH --mail-type=FAIL,TIME_LIMIT,TIME_LIMIT_90
 
-
+conda deactivate
+CUDA_VISIBLE_DEVICES=1
 [ ! -d "slurm_logs" ] && echo "Create a directory slurm_logs" && mkdir -p slurm_logs
 
 module load cuda/11.1.1
 module load gcc
 
 echo "===> Anaconda env loaded"
-source activate openpoints
+conda activate openpoints
 
 while true
 do
@@ -38,9 +39,9 @@ NUM_GPU_AVAILABLE=`nvidia-smi --query-gpu=name --format=csv,noheader | wc -l`
 echo $NUM_GPU_AVAILABLE
 
 
-cfg=$1
-PY_ARGS=${@:2}
-python examples/segmentation/main.py --cfg $cfg wandb.use_wandb=True ${PY_ARGS}
+# cfg=$1  #  cfgs/s3dis/assanet-l.yaml
+# PY_ARGS=${@:2}
+# python examples/segmentation/main.py --cfg $cfg wandb.use_wandb=True ${PY_ARGS}
 
 
 # how to run

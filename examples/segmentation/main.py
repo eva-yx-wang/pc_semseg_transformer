@@ -10,6 +10,8 @@ import argparse, yaml, os, logging, numpy as np, csv, wandb
 from tqdm import tqdm
 import torch, torch.nn as nn
 from torch import distributed as dist, multiprocessing as mp
+# from torch import distributed as dist
+# from torch import multiprocessing
 from torch.utils.tensorboard import SummaryWriter
 from torch_scatter import scatter
 from openpoints.utils import set_random_seed, save_checkpoint, load_checkpoint, resume_checkpoint, setup_logger_dist, \
@@ -24,6 +26,7 @@ from openpoints.loss import build_criterion_from_cfg
 from openpoints.models import build_model_from_cfg
 import warnings
 warnings.simplefilter(action='ignore', category=FutureWarning)
+
 
 
 def write_to_csv(oa, macc, miou, ious, best_epoch, cfg, write_header=True, area=5):
@@ -58,14 +61,15 @@ def main(gpu, cfg):
     logging.info(cfg)
 
     if cfg.model.get('in_channels', None) is None:
-        cfg.model.in_channels = cfg.model.encoder_args.in_channels
-    model = build_model_from_cfg(cfg.model).to(cfg.rank)
-    model_size = cal_model_parm_nums(model)
+        cfg.model.in_channels = cfg.model.encoder_args.in_channels  #4
+    #model = build_model_from_cfg(cfg.model).to(cfg.rank)
+    model = build_model_from_cfg(cfg.model).cuda()
+    model_size = cal_model_parm_nums(model)  #!num of model params
     logging.info(model)
     logging.info('Number of params: %.4f M' % (model_size / 1e6))
 
     if cfg.sync_bn:
-        model = torch.nn.SyncBatchNorm.convert_sync_batchnorm(model)
+        model = torch.nn.SyncBatchNorm.convert_sync_batchnorm(model)  #!
         logging.info('Using Synchronized BatchNorm ...')
     if cfg.distributed:
         torch.cuda.set_device(gpu)
@@ -90,7 +94,7 @@ def main(gpu, cfg):
         assert cfg.num_classes == num_classes
     logging.info(f"number of classes of the dataset: {num_classes}")
     cfg.classes = val_loader.dataset.classes if hasattr(val_loader.dataset, 'classes') else np.range(num_classes)
-    cfg.cmap = np.array(val_loader.dataset.cmap) if hasattr(val_loader.dataset, 'cmap') else None
+    cfg.cmap = np.array(val_loader.dataset.cmap) if hasattr(val_loader.dataset, 'cmap') else None  # rgb2class of each class
     validate_fn = validate if 'sphere' not in cfg.dataset.common.NAME.lower() else validate_sphere
     
     # optionally resume from a checkpoint
@@ -122,6 +126,7 @@ def main(gpu, cfg):
     else:
         logging.info('Training from scratch')
 
+    '''LOAD DATA'''
     train_loader = build_dataloader_from_cfg(cfg.batch_size,
                                              cfg.dataset,
                                              cfg.dataloader,
@@ -134,7 +139,7 @@ def main(gpu, cfg):
     cfg.criterion.weight = None 
     if cfg.get('cls_weighed_loss', False):
         if hasattr(train_loader.dataset, 'num_per_class'):    
-            cfg.criterion.weight = get_class_weights(train_loader.dataset.num_per_class, normalize=True)
+            cfg.criterion.weight = get_class_weights(train_loader.dataset.num_per_class, normalize=True) #!weight normalization
         else: 
             logging.info('`num_per_class` attribute is not founded in dataset')
     criterion = build_criterion_from_cfg(cfg.criterion).cuda()
@@ -148,7 +153,7 @@ def main(gpu, cfg):
         if hasattr(train_loader.dataset, 'epoch'):  # some dataset sets the dataset length as a fixed steps.
             train_loader.dataset.epoch = epoch - 1
         train_loss, train_miou, train_macc, train_oa, _, _ = \
-            train_one_epoch(model, train_loader, criterion, optimizer, scheduler, epoch, cfg)
+            train_one_epoch(model, train_loader, criterion, optimizer, scheduler, epoch, cfg) #!2
 
         is_best = False
         if epoch % cfg.val_freq == 0:
@@ -248,11 +253,11 @@ def train_one_epoch(model, train_loader, criterion, optimizer, scheduler, epoch,
         # from openpoints.dataset import vis_points
         # vis_points(data['pos'].cpu().numpy()[0], labels=data['y'].cpu().numpy()[0])
         # vis_points(data['pos'].cpu().numpy()[0], data['x'][0, :3, :].transpose(1, 0))
-        if len(data['x'].shape) > 2:
-            data['x'] = data['x'].transpose(1, 2)
+        if len(data['x'].shape) > 2:  #! data['x'].shape:[B, Npoints, RGBz]
+            data['x'] = data['x'].transpose(1, 2)  # [B, 4, Npoints]
         data['x'] = get_scene_seg_features(cfg.model.in_channels, data['pos'], data['x'])
 
-        logits = model(data)
+        logits = model(data)  #!3  go to '/home/wyx/projects/PointNeXt/openpoints/models/segmentation/base_seg.py
         loss = criterion(logits, target) if 'mask' not in cfg.criterion.NAME.lower() \
             else criterion(logits, target, data['mask'])
         loss.backward()
@@ -370,7 +375,7 @@ def test_entire_room(model, area, cfg, global_cm=None, num_votes=1):
     cm = ConfusionMatrix(num_classes=cfg.num_classes)
     global_cm =  ConfusionMatrix(num_classes=cfg.num_classes) if global_cm is None else global_cm
     set_random_seed(0)
-    cfg.visualize = cfg.get('visualize', False)
+    cfg.visualize = cfg.get('visualize', True)  #!for test mode
     if cfg.visualize:
         from openpoints.dataset.vis3d import write_obj
         cfg.vis_dir = os.path.join(cfg.run_dir, 'visualization')
@@ -484,14 +489,19 @@ if __name__ == "__main__":
 
     # init distributed env first, since logger depends on the dist info.
     cfg.rank, cfg.world_size, cfg.distributed, cfg.mp = dist_utils.get_dist_info(cfg)
+    # cfg.world_size = 1
+    # cfg.distributed = False
+    # cfg.mp = False
     cfg.sync_bn = cfg.world_size > 1
+    # do not use distributed
+
 
     # init log dir
     cfg.task_name = args.cfg.split('.')[-2].split('/')[-2]  # task/dataset name, \eg s3dis, modelnet40_cls
     cfg.cfg_basename = args.cfg.split('.')[-2].split('/')[-1]   # cfg_basename, \eg pointnext-xl 
     tags = [
         cfg.task_name,  # task name (the folder of name under ./cfgs
-        cfg.mode,
+        cfg.mode,  # 'train', 'training', 'finetune', 'finetuning'
         cfg.cfg_basename,  # cfg file name
         f'ngpus{cfg.world_size}',
         f'seed{cfg.seed}',
@@ -524,5 +534,6 @@ if __name__ == "__main__":
         cfg.dist_url = f"tcp://localhost:{port}"
         print('using mp spawn for distributed training')
         mp.spawn(main, nprocs=cfg.world_size, args=(cfg))
+        
     else:
-        main(0, cfg)
+        main(1, cfg)  #!1

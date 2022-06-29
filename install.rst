@@ -33,7 +33,7 @@ Step by step installation
         .. code-block:: none
             
             # add the following to you `~/.bashrc`
-            cuda=cuda-11.1
+            cuda=cuda-11.0
             export CUDADIR=/usr/local/$cuda
             export PATH=$CUDADIR/bin:$PATH
             export NUMBAPRO_NVVM=$CUDADIR/nvvm/lib64/libnvvm.so
@@ -50,7 +50,7 @@ Step by step installation
         .. code-block:: none
 
             nvcc --version
-            >>> 11.1
+            >>> 11.0
 
 
 #. Install PyTorch
@@ -60,26 +60,25 @@ Step by step installation
             conda env remove --name openpoints
             conda create -n openpoints -y python=3.7 numpy=1.20 numba
             conda activate openpoints
-
-            conda install -y pytorch=1.10.1 torchvision cudatoolkit=11.1 -c pytorch -c nvidia
+            # check https://pytorch.org/get-started/previous-versions/ first
+            pip install torch==1.10.1+cu111 torchvision==0.11.2+cu111 torchaudio==0.10.1 -f https://download.pytorch.org/whl/torch_stable.html
             
     #. Ensure that PyTorch and system CUDA versions match in the major level (both of them are 11.x):
 
         .. code-block:: none
 
             python -c "import torch; print(torch.version.cuda)"
-            >>> 11.1
+            >>> 11.0
 
             nvcc --version
-            >>> 11.1
+            >>> 11.0
 
 
 #. Install relevant packages:
 
     .. code-block:: none
 
-
-        pip install torch-scatter -f https://data.pyg.org/whl/torch-1.10.1+cu113.html
+        pip install torch-scatter -f https://data.pyg.org/whl/torch-1.10.1+cu111.html
         pip install -r requirements.txt
 
 
@@ -89,6 +88,6 @@ Step by step installation
     .. code-block:: none
 
         cd openpoints/cpp/pointnet2_batch
-        python setup.py install
+        python setup.py clean --all && python setup.py install
         cd ../../../
 

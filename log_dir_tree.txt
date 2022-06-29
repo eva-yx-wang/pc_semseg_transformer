@@ -1,0 +1,398 @@
+/home/wyx/projects/PointNeXt/log
+└── s3dis
+    └── s3dis-train-pointnext-xl-ngpus2-seed7943-20220626-194541-aLGiPpg7dJSMBn9kWoyscY
+        ├── cfg.yaml  # all config info
+        ├── checkpoint
+        ├── code
+        │   └── openpoints
+        │       ├── cpp
+        │       │   ├── chamfer_dist
+        │       │   │   ├── build
+        │       │   │   │   ├── bdist.linux-x86_64
+        │       │   │   │   ├── lib.linux-x86_64-3.7
+        │       │   │   │   │   └── chamfer.cpython-37m-x86_64-linux-gnu.so
+        │       │   │   │   └── temp.linux-x86_64-3.7
+        │       │   │   │       ├── build.ninja
+        │       │   │   │       ├── chamfer_cuda.o
+        │       │   │   │       └── chamfer.o
+        │       │   │   ├── chamfer.cu
+        │       │   │   ├── chamfer_cuda.cpp
+        │       │   │   ├── chamfer.egg-info
+        │       │   │   │   ├── dependency_links.txt
+        │       │   │   │   ├── PKG-INFO
+        │       │   │   │   ├── SOURCES.txt
+        │       │   │   │   └── top_level.txt
+        │       │   │   ├── dist
+        │       │   │   │   └── chamfer-2.0.0-py3.7-linux-x86_64.egg
+        │       │   │   ├── __init__.py
+        │       │   │   ├── setup.py
+        │       │   │   └── test.py
+        │       │   ├── emd
+        │       │   │   ├── build
+        │       │   │   │   ├── bdist.linux-x86_64
+        │       │   │   │   ├── lib.linux-x86_64-3.7
+        │       │   │   │   │   └── emd_cuda.cpython-37m-x86_64-linux-gnu.so
+        │       │   │   │   └── temp.linux-x86_64-3.7
+        │       │   │   │       ├── build.ninja
+        │       │   │   │       └── cuda
+        │       │   │   │           ├── emd_kernel.o
+        │       │   │   │           └── emd.o
+        │       │   │   ├── cuda
+        │       │   │   │   ├── emd.cpp
+        │       │   │   │   └── emd_kernel.cu
+        │       │   │   ├── dist
+        │       │   │   │   └── emd_ext-0.0.0-py3.7-linux-x86_64.egg
+        │       │   │   ├── emd_ext.egg-info
+        │       │   │   │   ├── dependency_links.txt
+        │       │   │   │   ├── PKG-INFO
+        │       │   │   │   ├── SOURCES.txt
+        │       │   │   │   └── top_level.txt
+        │       │   │   ├── emd.py
+        │       │   │   ├── __init__.py
+        │       │   │   ├── README.md
+        │       │   │   ├── setup.py
+        │       │   │   └── test_emd_loss.py
+        │       │   ├── __init__.py
+        │       │   ├── pointnet2_batch
+        │       │   │   ├── build
+        │       │   │   │   ├── bdist.linux-x86_64
+        │       │   │   │   ├── lib.linux-x86_64-3.7
+        │       │   │   │   │   └── pointnet2_batch_cuda.cpython-37m-x86_64-linux-gnu.so
+        │       │   │   │   └── temp.linux-x86_64-3.7
+        │       │   │   │       ├── build.ninja
+        │       │   │   │       └── src
+        │       │   │   │           ├── ball_query_gpu.o
+        │       │   │   │           ├── ball_query.o
+        │       │   │   │           ├── group_points_gpu.o
+        │       │   │   │           ├── group_points.o
+        │       │   │   │           ├── interpolate_gpu.o
+        │       │   │   │           ├── interpolate.o
+        │       │   │   │           ├── pointnet2_api.o
+        │       │   │   │           ├── sampling_gpu.o
+        │       │   │   │           └── sampling.o
+        │       │   │   ├── dist
+        │       │   │   │   └── pointnet2_cuda-0.0.0-py3.7-linux-x86_64.egg
+        │       │   │   ├── __init__.py
+        │       │   │   ├── pointnet2_cuda.egg-info
+        │       │   │   │   ├── dependency_links.txt
+        │       │   │   │   ├── PKG-INFO
+        │       │   │   │   ├── SOURCES.txt
+        │       │   │   │   └── top_level.txt
+        │       │   │   ├── __pycache__
+        │       │   │   │   └── __init__.cpython-37.pyc
+        │       │   │   ├── setup.py
+        │       │   │   └── src
+        │       │   │       ├── ball_query.cpp
+        │       │   │       ├── ball_query_gpu.cu
+        │       │   │       ├── ball_query_gpu.h
+        │       │   │       ├── cuda_utils.h
+        │       │   │       ├── group_points.cpp
+        │       │   │       ├── group_points_gpu.cu
+        │       │   │       ├── group_points_gpu.h
+        │       │   │       ├── interpolate.cpp
+        │       │   │       ├── interpolate_gpu.cu
+        │       │   │       ├── interpolate_gpu.h
+        │       │   │       ├── pointnet2_api.cpp
+        │       │   │       ├── sampling.cpp
+        │       │   │       ├── sampling_gpu.cu
+        │       │   │       └── sampling_gpu.h
+        │       │   ├── pointops
+        │       │   │   ├── build
+        │       │   │   │   ├── bdist.linux-x86_64
+        │       │   │   │   ├── lib.linux-x86_64-3.7
+        │       │   │   │   │   └── pointops_cuda.cpython-37m-x86_64-linux-gnu.so
+        │       │   │   │   └── temp.linux-x86_64-3.7
+        │       │   │   │       ├── build.ninja
+        │       │   │   │       └── src
+        │       │   │   │           ├── aggregation
+        │       │   │   │           │   ├── aggregation_cuda_kernel.o
+        │       │   │   │           │   └── aggregation_cuda.o
+        │       │   │   │           ├── ballquery
+        │       │   │   │           │   ├── ballquery_cuda_kernel.o
+        │       │   │   │           │   └── ballquery_cuda.o
+        │       │   │   │           ├── grouping
+        │       │   │   │           │   ├── grouping_cuda_kernel.o
+        │       │   │   │           │   └── grouping_cuda.o
+        │       │   │   │           ├── interpolation
+        │       │   │   │           │   ├── interpolation_cuda_kernel.o
+        │       │   │   │           │   └── interpolation_cuda.o
+        │       │   │   │           ├── knnquery
+        │       │   │   │           │   ├── knnquery_cuda_kernel.o
+        │       │   │   │           │   └── knnquery_cuda.o
+        │       │   │   │           ├── pointops_api.o
+        │       │   │   │           ├── sampling
+        │       │   │   │           │   ├── sampling_cuda_kernel.o
+        │       │   │   │           │   └── sampling_cuda.o
+        │       │   │   │           └── subtraction
+        │       │   │   │               ├── subtraction_cuda_kernel.o
+        │       │   │   │               └── subtraction_cuda.o
+        │       │   │   ├── dist
+        │       │   │   │   └── pointops-0.0.0-py3.7-linux-x86_64.egg
+        │       │   │   ├── functions
+        │       │   │   │   ├── __init__.py
+        │       │   │   │   ├── pointops.py
+        │       │   │   │   └── __pycache__
+        │       │   │   │       ├── __init__.cpython-37.pyc
+        │       │   │   │       └── pointops.cpython-37.pyc
+        │       │   │   ├── __init__.py
+        │       │   │   ├── pointops.egg-info
+        │       │   │   │   ├── dependency_links.txt
+        │       │   │   │   ├── PKG-INFO
+        │       │   │   │   ├── SOURCES.txt
+        │       │   │   │   └── top_level.txt
+        │       │   │   ├── __pycache__
+        │       │   │   │   └── __init__.cpython-37.pyc
+        │       │   │   ├── setup.py
+        │       │   │   └── src
+        │       │   │       ├── aggregation
+        │       │   │       │   ├── aggregation_cuda.cpp
+        │       │   │       │   ├── aggregation_cuda_kernel.cu
+        │       │   │       │   └── aggregation_cuda_kernel.h
+        │       │   │       ├── ballquery
+        │       │   │       │   ├── ballquery_cuda.cpp
+        │       │   │       │   ├── ballquery_cuda_kernel.cu
+        │       │   │       │   └── ballquery_cuda_kernel.h
+        │       │   │       ├── cuda_utils.h
+        │       │   │       ├── grouping
+        │       │   │       │   ├── grouping_cuda.cpp
+        │       │   │       │   ├── grouping_cuda_kernel.cu
+        │       │   │       │   └── grouping_cuda_kernel.h
+        │       │   │       ├── __init__.py
+        │       │   │       ├── interpolation
+        │       │   │       │   ├── interpolation_cuda.cpp
+        │       │   │       │   ├── interpolation_cuda_kernel.cu
+        │       │   │       │   └── interpolation_cuda_kernel.h
+        │       │   │       ├── knnquery
+        │       │   │       │   ├── knnquery_cuda.cpp
+        │       │   │       │   ├── knnquery_cuda_kernel.cu
+        │       │   │       │   └── knnquery_cuda_kernel.h
+        │       │   │       ├── pointops_api.cpp
+        │       │   │       ├── sampling
+        │       │   │       │   ├── sampling_cuda.cpp
+        │       │   │       │   ├── sampling_cuda_kernel.cu
+        │       │   │       │   └── sampling_cuda_kernel.h
+        │       │   │       └── subtraction
+        │       │   │           ├── subtraction_cuda.cpp
+        │       │   │           ├── subtraction_cuda_kernel.cu
+        │       │   │           └── subtraction_cuda_kernel.h
+        │       │   ├── __pycache__
+        │       │   │   └── __init__.cpython-37.pyc
+        │       │   └── subsampling
+        │       │       ├── cpp_utils
+        │       │       │   ├── cloud
+        │       │       │   │   ├── cloud.cpp
+        │       │       │   │   └── cloud.h
+        │       │       │   └── nanoflann
+        │       │       │       └── nanoflann.hpp
+        │       │       ├── grid_subsampling
+        │       │       │   ├── grid_subsampling.cpp
+        │       │       │   └── grid_subsampling.h
+        │       │       ├── grid_subsampling.cpython-37m-x86_64-linux-gnu.so
+        │       │       ├── setup.py
+        │       │       └── wrapper.cpp
+        │       ├── dataset
+        │       │   ├── build.py
+        │       │   ├── data_util.py
+        │       │   ├── grid_sample.py
+        │       │   ├── __init__.py
+        │       │   ├── modelnet
+        │       │   │   ├── __init__.py
+        │       │   │   ├── modelnet40_ply_2048_loader.py
+        │       │   │   └── __pycache__
+        │       │   │       ├── __init__.cpython-37.pyc
+        │       │   │       └── modelnet40_ply_2048_loader.cpython-37.pyc
+        │       │   ├── __pycache__
+        │       │   │   ├── build.cpython-37.pyc
+        │       │   │   ├── data_util.cpython-37.pyc
+        │       │   │   ├── grid_sample.cpython-37.pyc
+        │       │   │   ├── __init__.cpython-37.pyc
+        │       │   │   └── vis3d.cpython-37.pyc
+        │       │   ├── s3dis
+        │       │   │   ├── __init__.py
+        │       │   │   ├── __pycache__
+        │       │   │   │   ├── __init__.cpython-37.pyc
+        │       │   │   │   ├── s3dis.cpython-37.pyc
+        │       │   │   │   └── s3dis_sphere.cpython-37.pyc
+        │       │   │   ├── s3dis.py
+        │       │   │   └── s3dis_sphere.py
+        │       │   ├── scanobjectnn
+        │       │   │   ├── __init__.py
+        │       │   │   ├── __pycache__
+        │       │   │   │   ├── __init__.cpython-37.pyc
+        │       │   │   │   └── scanobjectnn.cpython-37.pyc
+        │       │   │   └── scanobjectnn.py
+        │       │   └── vis3d.py
+        │       ├── __init__.py
+        │       ├── loss
+        │       │   ├── build.py
+        │       │   ├── cross_entropy.py
+        │       │   ├── __init__.py
+        │       │   └── __pycache__
+        │       │       ├── build.cpython-37.pyc
+        │       │       ├── cross_entropy.cpython-37.pyc
+        │       │       └── __init__.cpython-37.pyc
+        │       ├── models
+        │       │   ├── backbone
+        │       │   │   ├── deepgcn.py
+        │       │   │   ├── dgcnn.py
+        │       │   │   ├── __init__.py
+        │       │   │   ├── pointmlp.py
+        │       │   │   ├── pointnet.py
+        │       │   │   ├── pointnetv2.py
+        │       │   │   ├── pointnext.py
+        │       │   │   ├── pointtransformer.py
+        │       │   │   └── __pycache__
+        │       │   │       ├── deepgcn.cpython-37.pyc
+        │       │   │       ├── dgcnn.cpython-37.pyc
+        │       │   │       ├── __init__.cpython-37.pyc
+        │       │   │       ├── pointmlp.cpython-37.pyc
+        │       │   │       ├── pointnet.cpython-37.pyc
+        │       │   │       ├── pointnetv2.cpython-37.pyc
+        │       │   │       ├── pointnext.cpython-37.pyc
+        │       │   │       └── pointtransformer.cpython-37.pyc
+        │       │   ├── build.py
+        │       │   ├── classification
+        │       │   │   ├── cls_base.py
+        │       │   │   ├── __init__.py
+        │       │   │   └── __pycache__
+        │       │   │       ├── cls_base.cpython-37.pyc
+        │       │   │       └── __init__.cpython-37.pyc
+        │       │   ├── __init__.py
+        │       │   ├── layers
+        │       │   │   ├── activation.py
+        │       │   │   ├── attention.py
+        │       │   │   ├── conv.py
+        │       │   │   ├── drop.py
+        │       │   │   ├── graph_conv.py
+        │       │   │   ├── group.py
+        │       │   │   ├── helpers.py
+        │       │   │   ├── __init__.py
+        │       │   │   ├── knn.py
+        │       │   │   ├── local_aggregation.py
+        │       │   │   ├── mlp.py
+        │       │   │   ├── norm.py
+        │       │   │   ├── padding.py
+        │       │   │   ├── __pycache__
+        │       │   │   │   ├── activation.cpython-37.pyc
+        │       │   │   │   ├── attention.cpython-37.pyc
+        │       │   │   │   ├── conv.cpython-37.pyc
+        │       │   │   │   ├── drop.cpython-37.pyc
+        │       │   │   │   ├── graph_conv.cpython-37.pyc
+        │       │   │   │   ├── group.cpython-37.pyc
+        │       │   │   │   ├── helpers.cpython-37.pyc
+        │       │   │   │   ├── __init__.cpython-37.pyc
+        │       │   │   │   ├── knn.cpython-37.pyc
+        │       │   │   │   ├── local_aggregation.cpython-37.pyc
+        │       │   │   │   ├── mlp.cpython-37.pyc
+        │       │   │   │   ├── norm.cpython-37.pyc
+        │       │   │   │   ├── subsample.cpython-37.pyc
+        │       │   │   │   ├── upsampling.cpython-37.pyc
+        │       │   │   │   └── weight_init.cpython-37.pyc
+        │       │   │   ├── registry.py
+        │       │   │   ├── subsample.py
+        │       │   │   ├── upsampling.py
+        │       │   │   └── weight_init.py
+        │       │   ├── __pycache__
+        │       │   │   ├── build.cpython-37.pyc
+        │       │   │   └── __init__.cpython-37.pyc
+        │       │   ├── registry.py
+        │       │   └── segmentation
+        │       │       ├── base_seg.py
+        │       │       ├── __init__.py
+        │       │       ├── __pycache__
+        │       │       │   ├── base_seg.cpython-37.pyc
+        │       │       │   └── __init__.cpython-37.pyc
+        │       │       └── vit_seg.py
+        │       ├── optim
+        │       │   ├── adabelief.py
+        │       │   ├── adafactor.py
+        │       │   ├── adahessian.py
+        │       │   ├── adamp.py
+        │       │   ├── adamw.py
+        │       │   ├── __init__.py
+        │       │   ├── lamb.py
+        │       │   ├── lars.py
+        │       │   ├── lookahead.py
+        │       │   ├── madgrad.py
+        │       │   ├── nadam.py
+        │       │   ├── nvnovograd.py
+        │       │   ├── optim_factory.py
+        │       │   ├── __pycache__
+        │       │   │   ├── adabelief.cpython-37.pyc
+        │       │   │   ├── adafactor.cpython-37.pyc
+        │       │   │   ├── adahessian.cpython-37.pyc
+        │       │   │   ├── adamp.cpython-37.pyc
+        │       │   │   ├── adamw.cpython-37.pyc
+        │       │   │   ├── __init__.cpython-37.pyc
+        │       │   │   ├── lamb.cpython-37.pyc
+        │       │   │   ├── lars.cpython-37.pyc
+        │       │   │   ├── lookahead.cpython-37.pyc
+        │       │   │   ├── madgrad.cpython-37.pyc
+        │       │   │   ├── nadam.cpython-37.pyc
+        │       │   │   ├── nvnovograd.cpython-37.pyc
+        │       │   │   ├── optim_factory.cpython-37.pyc
+        │       │   │   ├── radam.cpython-37.pyc
+        │       │   │   ├── rmsprop_tf.cpython-37.pyc
+        │       │   │   └── sgdp.cpython-37.pyc
+        │       │   ├── radam.py
+        │       │   ├── rmsprop_tf.py
+        │       │   └── sgdp.py
+        │       ├── __pycache__
+        │       │   └── __init__.cpython-37.pyc
+        │       ├── README.md
+        │       ├── scheduler
+        │       │   ├── cosine_lr.py
+        │       │   ├── __init__.py
+        │       │   ├── multistep_lr.py
+        │       │   ├── plateau_lr.py
+        │       │   ├── poly_lr.py
+        │       │   ├── __pycache__
+        │       │   │   ├── cosine_lr.cpython-37.pyc
+        │       │   │   ├── __init__.cpython-37.pyc
+        │       │   │   ├── multistep_lr.cpython-37.pyc
+        │       │   │   ├── plateau_lr.cpython-37.pyc
+        │       │   │   ├── poly_lr.cpython-37.pyc
+        │       │   │   ├── scheduler.cpython-37.pyc
+        │       │   │   ├── scheduler_factory.cpython-37.pyc
+        │       │   │   ├── step_lr.cpython-37.pyc
+        │       │   │   └── tanh_lr.cpython-37.pyc
+        │       │   ├── scheduler_factory.py
+        │       │   ├── scheduler.py
+        │       │   ├── step_lr.py
+        │       │   └── tanh_lr.py
+        │       ├── transforms
+        │       │   ├── __init__.py
+        │       │   ├── point_transform_cpu.py
+        │       │   ├── point_transformer_gpu.py
+        │       │   ├── __pycache__
+        │       │   │   ├── __init__.cpython-37.pyc
+        │       │   │   ├── point_transform_cpu.cpython-37.pyc
+        │       │   │   ├── point_transformer_gpu.cpython-37.pyc
+        │       │   │   └── transforms_factory.cpython-37.pyc
+        │       │   └── transforms_factory.py
+        │       └── utils
+        │           ├── ckpt_util.py
+        │           ├── config.py
+        │           ├── dist_utils.py
+        │           ├── __init__.py
+        │           ├── logger.py
+        │           ├── metrics.py
+        │           ├── __pycache__
+        │           │   ├── ckpt_util.cpython-37.pyc
+        │           │   ├── config.cpython-37.pyc
+        │           │   ├── dist_utils.cpython-37.pyc
+        │           │   ├── __init__.cpython-37.pyc
+        │           │   ├── logger.cpython-37.pyc
+        │           │   ├── metrics.cpython-37.pyc
+        │           │   ├── random.cpython-37.pyc
+        │           │   ├── registry.cpython-37.pyc
+        │           │   └── wandb.cpython-37.pyc
+        │           ├── random.py
+        │           ├── registry.py
+        │           ├── str2bool.py
+        │           └── wandb.py
+        ├── events.out.tfevents.1656243941.omnisky.11210.0
+        ├── pointnext-xl.yaml
+        └── s3dis-train-pointnext-xl-ngpus2-seed7943-20220626-194541-aLGiPpg7dJSMBn9kWoyscY.log
+
+93 directories, 302 files

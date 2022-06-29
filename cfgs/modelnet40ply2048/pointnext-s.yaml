@@ -6,6 +6,8 @@
 #  6.49    3.23    4.523
 # Throughput (ins./s): 2032.9397323777052
 
+# default cfgs in "/home/wyx/projects/PointNeXt/cfgs/modelnet40ply2048/default.yaml", 
+#"/home/wyx/projects/PointNeXt/cfgs/default.yaml"
 model:
   NAME: BaseCls
   encoder_args:
@@ -38,3 +40,9 @@ model:
     mlps: [512, 256]
     norm_args: 
       norm: 'bn1d'
+
+# cfg.rank: id of gpu
+# cfg.world_size: num of gpu
+# cfg.distributed: isMultiprocessing
+# cfg.mp : isMultiGPU
+# cfg.sync_bn: isMultiGPU
